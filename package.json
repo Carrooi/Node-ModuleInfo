@@ -1,0 +1,32 @@
+{
+	"name": "module-info",
+	"description": "Find package.json files in module and load information from it",
+	"version": "1.0.0",
+	"author": {
+		"name": "David Kudera",
+		"email": "sakren@gmail.com"
+	},
+	"keywords": [
+		"module",
+		"package",
+		"info"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:sakren/node-module-info.git"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": "*"
+	},
+	"main": "./lib/Info.js",
+	"dependencies": {
+		"fs-finder": "~1.7.4"
+	},
+	"devDependencies": {
+		"chai": "~1.8.0"
+	},
+	"scripts": {
+		"test": "cd ./test; mocha ./index.js --reporter spec;"
+	}
+}
