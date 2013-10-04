@@ -74,6 +74,24 @@ class Info
 		return @getPackageData().name
 
 
+	getPath: ->
+		return @dir
+
+
+	getModuleName: (file) ->
+		file = path.resolve(@dir, file)
+		if !fs.existsSync(file)
+			throw new Error 'File ' + file + ' does not exists.'
+
+		if !fs.statSync(file).isFile()
+			throw new Error 'Path ' + file + ' is not file.'
+
+		if file == @getMainFile()
+			return @getName()
+
+		return @getName() + '/' + path.relative(@dir, file)
+
+
 	getVersion: ->
 		return @getPackageData().version
 

@@ -27,10 +27,16 @@
         main: './dir/lib'
       });
     });
-    return describe('#getMainFile()', function() {
+    describe('#getMainFile()', function() {
       return it('should get main file for advanced module', function() {
         info = Info.fromFile(dir + '/advanced/dir/src/test/test.js');
         return expect(info.getMainFile()).to.be.equal(dir + '/advanced/dir/lib/index.js');
+      });
+    });
+    return describe('#getPath()', function() {
+      return it('should return path to module directory', function() {
+        info = Info.fromFile(dir + '/simple/index.js');
+        return expect(info.getPath()).to.be.equal(dir + '/simple');
       });
     });
   });

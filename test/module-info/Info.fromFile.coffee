@@ -26,3 +26,8 @@ describe 'Info.fromFile', ->
 		it 'should get main file for advanced module', ->
 			info = Info.fromFile(dir + '/advanced/dir/src/test/test.js')
 			expect(info.getMainFile()).to.be.equal(dir + '/advanced/dir/lib/index.js')
+
+	describe '#getPath()', ->
+		it 'should return path to module directory', ->
+			info = Info.fromFile(dir + '/simple/index.js')
+			expect(info.getPath()).to.be.equal(dir + '/simple')

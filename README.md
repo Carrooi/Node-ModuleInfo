@@ -46,8 +46,10 @@ var info = Info.self(module);
 * `getPackagePath()`: returns path to `package.json` file
 * `getPackageData()`: returns parsed JSON data from `package.json` file
 * `getName()`: returns name of module
+* `getPath()`: returns resolved path to module
 * `getVersion()`: returns version of module
 * `getMainFile()`: returns resolved full path to main file (even it is not defined in `package.json`)
+* `getModuleName(string filePath)`: returns name for file in module used in `require` method
 
 ## Tests
 
@@ -56,6 +58,10 @@ $ npm test
 ```
 
 ## Changelog
+
+* 1.1.0
+	+ Added getPath method
+	+ Added getModuleName method
 
 * 1.0.0
 	+ First version

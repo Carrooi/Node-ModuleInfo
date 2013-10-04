@@ -36,6 +36,11 @@ describe 'Info', ->
 			info = new Info(dir + '/simple')
 			expect(info.getName()).to.be.equal('simple')
 
+	describe '#getPath()', ->
+		it 'should return path to module directory', ->
+			info = new Info(dir + '/simple')
+			expect(info.getPath()).to.be.equal(dir + '/simple')
+
 	describe '#getMainFile()', ->
 		it 'should return path to main file', ->
 			info = new Info(dir + '/simple')
@@ -44,3 +49,27 @@ describe 'Info', ->
 		it 'should return path to main file when it is not defined in package.json', ->
 			info = new Info(dir + '/no-main')
 			expect(info.getMainFile()).to.be.equal(dir + '/no-main/index.js')
+
+	describe '#getModuleName()', ->
+		it 'should throw an error if file does not exists', ->
+			info = new Info(dir + '/simple')
+			expect( -> info.getModuleName('unknown') ).to.throw(Error)
+
+		it 'should throw an error if path is not file', ->
+			info = new Info(dir + '/simple')
+			expect( -> info.getModuleName(dir + '/simple') ).to.throw(Error)
+
+		it 'should get name of module itself', ->
+			info = new Info(dir + '/simple')
+			expect(info.getModuleName('index.js')).to.be.equal('simple')
+
+			info = new Info(dir + '/advanced')
+			expect(info.getModuleName('dir/lib/index.js')).to.be.equal('advanced')
+
+		it 'should get name of file in module for require method', ->
+			info = new Info(dir + '/advanced')
+			expect(info.getModuleName('dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js')
+
+		it 'should get name of file in module for absolute path', ->
+			info = new Info(dir + '/advanced')
+			expect(info.getModuleName(dir + '/advanced/dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js')

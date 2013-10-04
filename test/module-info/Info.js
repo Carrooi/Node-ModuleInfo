@@ -51,7 +51,13 @@
         return expect(info.getName()).to.be.equal('simple');
       });
     });
-    return describe('#getMainFile()', function() {
+    describe('#getPath()', function() {
+      return it('should return path to module directory', function() {
+        info = new Info(dir + '/simple');
+        return expect(info.getPath()).to.be.equal(dir + '/simple');
+      });
+    });
+    describe('#getMainFile()', function() {
       it('should return path to main file', function() {
         info = new Info(dir + '/simple');
         return expect(info.getMainFile()).to.be.equal(dir + '/simple/index.js');
@@ -59,6 +65,34 @@
       return it('should return path to main file when it is not defined in package.json', function() {
         info = new Info(dir + '/no-main');
         return expect(info.getMainFile()).to.be.equal(dir + '/no-main/index.js');
+      });
+    });
+    return describe('#getModuleName()', function() {
+      it('should throw an error if file does not exists', function() {
+        info = new Info(dir + '/simple');
+        return expect(function() {
+          return info.getModuleName('unknown');
+        }).to["throw"](Error);
+      });
+      it('should throw an error if path is not file', function() {
+        info = new Info(dir + '/simple');
+        return expect(function() {
+          return info.getModuleName(dir + '/simple');
+        }).to["throw"](Error);
+      });
+      it('should get name of module itself', function() {
+        info = new Info(dir + '/simple');
+        expect(info.getModuleName('index.js')).to.be.equal('simple');
+        info = new Info(dir + '/advanced');
+        return expect(info.getModuleName('dir/lib/index.js')).to.be.equal('advanced');
+      });
+      it('should get name of file in module for require method', function() {
+        info = new Info(dir + '/advanced');
+        return expect(info.getModuleName('dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js');
+      });
+      return it('should get name of file in module for absolute path', function() {
+        info = new Info(dir + '/advanced');
+        return expect(info.getModuleName(dir + '/advanced/dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js');
       });
     });
   });
