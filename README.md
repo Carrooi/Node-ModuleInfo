@@ -59,9 +59,12 @@ $ npm test
 
 ## Changelog
 
+* 1.1.2
+	+ Just typo in readme
+
 * 1.1.1
 	+ If main section in package.json is not defined and file `./index.js` exists, it will be returned from `getMainFile` method
-	+Method `getPackageData` renamed to `getData`
+	+ Method `getPackageData` renamed to `getData`
 	+ Method `getPackageData` is now deprecated
 
 * 1.1.0
