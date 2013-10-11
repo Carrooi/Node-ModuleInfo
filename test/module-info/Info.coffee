@@ -82,3 +82,7 @@ describe 'Info', ->
 		it 'should return true', ->
 			info = new Info(dir + '/simple')
 			expect(info.isNpmDependency()).to.be.true
+
+		it 'should return false', ->
+			info = new Info(path.resolve(dir + '/..'))
+			expect(info.isNpmDependency()).to.be.false

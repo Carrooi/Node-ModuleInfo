@@ -100,9 +100,13 @@
       });
     });
     return describe('#isNpmDependency()', function() {
-      return it('should return true', function() {
+      it('should return true', function() {
         info = new Info(dir + '/simple');
         return expect(info.isNpmDependency()).to.be["true"];
+      });
+      return it('should return false', function() {
+        info = new Info(path.resolve(dir + '/..'));
+        return expect(info.isNpmDependency()).to.be["false"];
       });
     });
   });
