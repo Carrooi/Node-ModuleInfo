@@ -63,7 +63,12 @@ class Info
 	getPackageData: ->
 		if @packageData == null
 			info = JSON.parse(fs.readFileSync(@getPackagePath(), encoding: 'utf8'))
-			if typeof info.main == 'undefined' then info.main = './index'
+
+			if typeof info.main == 'undefined'
+				if fs.existsSync(@dir + '/index.js')
+					info.main = './index.js'
+				else
+					info.main = null
 
 			@packageData = info
 

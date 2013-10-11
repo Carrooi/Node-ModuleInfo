@@ -59,6 +59,9 @@ $ npm test
 
 ## Changelog
 
+* 1.1.1
+	+ If main section in package.json is not defined and file `./index.js` exists, it will be returned from `getMainFile` method
+
 * 1.1.0
 	+ Added getPath method
 	+ Added getModuleName method
