@@ -50,6 +50,10 @@ describe 'Info', ->
 			info = new Info(dir + '/no-main')
 			expect(info.getMainFile()).to.be.equal(dir + '/no-main/index.js')
 
+		it 'should return null when main file is not defined and index.js does not exists', ->
+			info = new Info(dir + '/no-main2')
+			expect(info.getMainFile()).to.be.null
+
 	describe '#getModuleName()', ->
 		it 'should throw an error if file does not exists', ->
 			info = new Info(dir + '/simple')

@@ -62,9 +62,13 @@
         info = new Info(dir + '/simple');
         return expect(info.getMainFile()).to.be.equal(dir + '/simple/index.js');
       });
-      return it('should return path to main file when it is not defined in package.json', function() {
+      it('should return path to main file when it is not defined in package.json', function() {
         info = new Info(dir + '/no-main');
         return expect(info.getMainFile()).to.be.equal(dir + '/no-main/index.js');
+      });
+      return it('should return null when main file is not defined and index.js does not exists', function() {
+        info = new Info(dir + '/no-main2');
+        return expect(info.getMainFile()).to.be["null"];
       });
     });
     return describe('#getModuleName()', function() {

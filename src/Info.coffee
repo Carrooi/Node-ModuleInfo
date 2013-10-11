@@ -102,7 +102,11 @@ class Info
 
 
 	getMainFile: ->
-		return require.resolve(@dir + '/' + @getPackageData().main)
+		main = @getPackageData().main
+		if main == null
+			return null
+		else
+			return require.resolve(@dir + '/' + main)
 
 
 module.exports = Info
