@@ -36,10 +36,10 @@
         return expect(info.getPackagePath()).to.be.equal(dir + '/simple/package.json');
       });
     });
-    describe('#getPackageData()', function() {
+    describe('#getData()', function() {
       return it('should return json data from package.json file', function() {
         info = new Info(dir + '/simple');
-        return expect(info.getPackageData()).to.be.eql({
+        return expect(info.getData()).to.be.eql({
           name: 'simple',
           main: './index.js'
         });

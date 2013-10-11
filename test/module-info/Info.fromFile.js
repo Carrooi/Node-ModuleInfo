@@ -15,14 +15,14 @@
   describe('Info.fromFile', function() {
     it('should create Info object from main js file', function() {
       info = Info.fromFile(dir + '/simple/index.js');
-      return expect(info.getPackageData()).to.be.eql({
+      return expect(info.getData()).to.be.eql({
         name: 'simple',
         main: './index.js'
       });
     });
     it('should create Info object for advanced module', function() {
       info = Info.fromFile(dir + '/advanced/dir/src/test/test.js');
-      return expect(info.getPackageData()).to.be.eql({
+      return expect(info.getData()).to.be.eql({
         name: 'advanced',
         main: './dir/lib'
       });

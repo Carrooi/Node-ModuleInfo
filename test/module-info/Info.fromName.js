@@ -15,14 +15,14 @@
   describe('Info.fromName', function() {
     it('should create Info object from module name', function() {
       info = Info.fromName(module, 'simple');
-      return expect(info.getPackageData()).to.be.eql({
+      return expect(info.getData()).to.be.eql({
         name: 'simple',
         main: './index.js'
       });
     });
     it('should create Info object for advanced module', function() {
       info = Info.fromName(module, 'advanced');
-      return expect(info.getPackageData()).to.be.eql({
+      return expect(info.getData()).to.be.eql({
         name: 'advanced',
         main: './dir/lib'
       });

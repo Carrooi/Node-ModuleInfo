@@ -7,7 +7,7 @@ class Info
 
 	dir: null
 
-	packageData: null
+	data: null
 
 
 	constructor: (@dir) ->
@@ -60,8 +60,8 @@ class Info
 		return @dir + '/package.json'
 
 
-	getPackageData: ->
-		if @packageData == null
+	getData: ->
+		if @data == null
 			info = JSON.parse(fs.readFileSync(@getPackagePath(), encoding: 'utf8'))
 
 			if typeof info.main == 'undefined'
@@ -70,13 +70,18 @@ class Info
 				else
 					info.main = null
 
-			@packageData = info
+			@data = info
 
-		return @packageData
+		return @data
+
+
+	# deprecated
+	getPackageData: ->
+		return @getData()
 
 
 	getName: ->
-		return @getPackageData().name
+		return @getData().name
 
 
 	getPath: ->
@@ -98,11 +103,11 @@ class Info
 
 
 	getVersion: ->
-		return @getPackageData().version
+		return @getData().version
 
 
 	getMainFile: ->
-		main = @getPackageData().main
+		main = @getData().main
 		if main == null
 			return null
 		else

@@ -10,14 +10,14 @@ describe 'Info.fromName', ->
 
 	it 'should create Info object from module name', ->
 		info = Info.fromName module, 'simple'
-		expect(info.getPackageData()).to.be.eql(
+		expect(info.getData()).to.be.eql(
 			name: 'simple'
 			main: './index.js'
 		)
 
 	it 'should create Info object for advanced module', ->
 		info = Info.fromName module, 'advanced'
-		expect(info.getPackageData()).to.be.eql(
+		expect(info.getData()).to.be.eql(
 			name: 'advanced'
 			main: './dir/lib'
 		)

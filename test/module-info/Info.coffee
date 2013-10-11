@@ -23,10 +23,10 @@ describe 'Info', ->
 			info = new Info(dir + '/simple')
 			expect(info.getPackagePath()).to.be.equal(dir + '/simple/package.json')
 
-	describe '#getPackageData()', ->
+	describe '#getData()', ->
 		it 'should return json data from package.json file', ->
 			info = new Info(dir + '/simple')
-			expect(info.getPackageData()).to.be.eql(
+			expect(info.getData()).to.be.eql(
 				name: 'simple'
 				main: './index.js'
 			)
