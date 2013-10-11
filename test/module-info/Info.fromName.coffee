@@ -3,7 +3,7 @@ path = require 'path'
 
 Info = require '../../lib/Info'
 
-dir = path.normalize(__dirname + '/..')
+dir = __dirname
 info = null
 
 describe 'Info.fromName', ->

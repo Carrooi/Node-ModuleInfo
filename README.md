@@ -62,6 +62,7 @@ $ npm test
 
 * 1.2.0
 	+ Added method `isNpmDependency`
+	+ Some refactoring in tests
 
 * 1.1.2
 	+ Just typo in readme

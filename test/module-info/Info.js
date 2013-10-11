@@ -8,7 +8,7 @@
 
   Info = require('../../lib/Info');
 
-  dir = path.normalize(__dirname + '/../node_modules');
+  dir = path.normalize(__dirname + '/../data/test/node_modules');
 
   info = null;
 
