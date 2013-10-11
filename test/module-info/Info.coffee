@@ -55,6 +55,10 @@ describe 'Info', ->
 			expect(info.getMainFile()).to.be.null
 
 	describe '#getModuleName()', ->
+		it 'should throw an error if file is not placed in module', ->
+			info = new Info(dir + '/simple')
+			expect( -> info.getModuleName(dir + '/no-main/index.js')).to.throw(Error, 'File ' + dir + '/no-main/index.js is not in simple module.')
+
 		it 'should throw an error if file does not exists', ->
 			info = new Info(dir + '/simple')
 			expect( -> info.getModuleName('unknown') ).to.throw(Error)
@@ -86,3 +90,20 @@ describe 'Info', ->
 		it 'should return false', ->
 			info = new Info(path.resolve(dir + '/..'))
 			expect(info.isNpmDependency()).to.be.false
+
+	describe '#isFileInModule()', ->
+		it 'should return true for non npm module file', ->
+			info = new Info(path.resolve(dir + '/..'))
+			expect(info.isFileInModule('./application.js')).to.be.true
+
+		it 'should return false for file in npm module called from non npm module', ->
+			info = new Info(path.resolve(dir + '/..'))
+			expect(info.isFileInModule('./node_modules/simple/index.js')).to.be.false
+
+		it 'should return true for file from npm module', ->
+			info = new Info(dir + '/simple')
+			expect(info.isFileInModule('./index.js')).to.be.true
+
+		it 'should return false for file in submodule of npm module', ->
+			info = new Info(dir + '/advanced')
+			expect(info.isFileInModule('./node_modules/another/index.js')).to.be.false

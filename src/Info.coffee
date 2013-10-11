@@ -91,6 +91,10 @@ class Info
 
 	getModuleName: (file) ->
 		file = path.resolve(@dir, file)
+
+		if !@isFileInModule(file)
+			throw new Error 'File ' + file + ' is not in ' + @getName() + ' module.'
+
 		if !fs.existsSync(file)
 			throw new Error 'File ' + file + ' does not exists.'
 
@@ -118,6 +122,27 @@ class Info
 	isNpmDependency: ->
 		test = escapeRegexp('/node_modules/' + @getName())
 		return @dir.match(new RegExp(test + '$')) != null
+
+
+	isFileInModule: (file) ->
+		file = path.resolve(@dir, file)
+		if @isNpmDependency()
+			dir = escapeRegexp(@dir)
+			match = file.match(new RegExp('^' + dir + '\/(.*)$'))
+			if match == null
+				return false
+
+			if match[1].match(/node_modules/) == null
+				return true
+		else
+			if file.match(/node_modules/) != null
+				return false
+
+			dir = escapeRegexp(@dir)
+			if file.match(new RegExp('^' + dir)) != null
+				return true
+
+		return false
 
 
 module.exports = Info

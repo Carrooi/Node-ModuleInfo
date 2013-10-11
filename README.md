@@ -51,6 +51,7 @@ var info = Info.self(module);
 * `getMainFile()`: returns resolved full path to main file (even it is not defined in `package.json`)
 * `getModuleName(string filePath)`: returns name for file in module used in `require` method
 * `isNpmDependency()`: return true if module is dependency for another module
+* `isFileInModule(string filePath)`: checks if file is in module directory (not in any dependent sub-module)
 
 ## Tests
 
@@ -62,6 +63,8 @@ $ npm test
 
 * 1.2.0
 	+ Added method `isNpmDependency`
+	+ Added method `isFileInModule`
+	+ Method `getModuleName` throw an error if file is not in module
 	+ Some refactoring in tests
 
 * 1.1.2

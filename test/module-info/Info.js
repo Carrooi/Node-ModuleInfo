@@ -72,6 +72,12 @@
       });
     });
     describe('#getModuleName()', function() {
+      it('should throw an error if file is not placed in module', function() {
+        info = new Info(dir + '/simple');
+        return expect(function() {
+          return info.getModuleName(dir + '/no-main/index.js');
+        }).to["throw"](Error, 'File ' + dir + '/no-main/index.js is not in simple module.');
+      });
       it('should throw an error if file does not exists', function() {
         info = new Info(dir + '/simple');
         return expect(function() {
@@ -99,7 +105,7 @@
         return expect(info.getModuleName(dir + '/advanced/dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js');
       });
     });
-    return describe('#isNpmDependency()', function() {
+    describe('#isNpmDependency()', function() {
       it('should return true', function() {
         info = new Info(dir + '/simple');
         return expect(info.isNpmDependency()).to.be["true"];
@@ -107,6 +113,24 @@
       return it('should return false', function() {
         info = new Info(path.resolve(dir + '/..'));
         return expect(info.isNpmDependency()).to.be["false"];
+      });
+    });
+    return describe('#isFileInModule()', function() {
+      it('should return true for non npm module file', function() {
+        info = new Info(path.resolve(dir + '/..'));
+        return expect(info.isFileInModule('./application.js')).to.be["true"];
+      });
+      it('should return false for file in npm module called from non npm module', function() {
+        info = new Info(path.resolve(dir + '/..'));
+        return expect(info.isFileInModule('./node_modules/simple/index.js')).to.be["false"];
+      });
+      it('should return true for file from npm module', function() {
+        info = new Info(dir + '/simple');
+        return expect(info.isFileInModule('./index.js')).to.be["true"];
+      });
+      return it('should return false for file in submodule of npm module', function() {
+        info = new Info(dir + '/advanced');
+        return expect(info.isFileInModule('./node_modules/another/index.js')).to.be["false"];
       });
     });
   });
