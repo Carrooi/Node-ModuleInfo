@@ -77,3 +77,8 @@ describe 'Info', ->
 		it 'should get name of file in module for absolute path', ->
 			info = new Info(dir + '/advanced')
 			expect(info.getModuleName(dir + '/advanced/dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js')
+
+	describe '#isNpmDependency()', ->
+		it 'should return true', ->
+			info = new Info(dir + '/simple')
+			expect(info.isNpmDependency()).to.be.true

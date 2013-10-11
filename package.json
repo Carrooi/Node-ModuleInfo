@@ -21,7 +21,8 @@
 	},
 	"main": "./lib/Info.js",
 	"dependencies": {
-		"fs-finder": "~1.7.4"
+		"fs-finder": "~1.7.4",
+		"escape-regexp": "~0.0.1"
 	},
 	"devDependencies": {
 		"chai": "~1.8.0"

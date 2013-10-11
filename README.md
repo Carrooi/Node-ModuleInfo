@@ -50,6 +50,7 @@ var info = Info.self(module);
 * `getVersion()`: returns version of module
 * `getMainFile()`: returns resolved full path to main file (even it is not defined in `package.json`)
 * `getModuleName(string filePath)`: returns name for file in module used in `require` method
+* `isNpmDependency()`: return true if module is dependency for another module
 
 ## Tests
 
@@ -58,6 +59,9 @@ $ npm test
 ```
 
 ## Changelog
+
+* 1.2.0
+	+ Added method `isNpmDependency`
 
 * 1.1.2
 	+ Just typo in readme

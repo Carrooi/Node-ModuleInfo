@@ -1,6 +1,7 @@
 path = require 'path'
 fs = require 'fs'
 Finder = require 'fs-finder'
+escapeRegexp = require 'escape-regexp'
 
 class Info
 
@@ -112,6 +113,11 @@ class Info
 			return null
 		else
 			return require.resolve(@dir + '/' + main)
+
+
+	isNpmDependency: ->
+		test = escapeRegexp('/node_modules/' + @getName())
+		return @dir.match(new RegExp(test + '$')) != null
 
 
 module.exports = Info

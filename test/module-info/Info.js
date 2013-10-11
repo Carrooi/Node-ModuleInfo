@@ -71,7 +71,7 @@
         return expect(info.getMainFile()).to.be["null"];
       });
     });
-    return describe('#getModuleName()', function() {
+    describe('#getModuleName()', function() {
       it('should throw an error if file does not exists', function() {
         info = new Info(dir + '/simple');
         return expect(function() {
@@ -97,6 +97,12 @@
       return it('should get name of file in module for absolute path', function() {
         info = new Info(dir + '/advanced');
         return expect(info.getModuleName(dir + '/advanced/dir/src/test/test.js')).to.be.equal('advanced/dir/src/test/test.js');
+      });
+    });
+    return describe('#isNpmDependency()', function() {
+      return it('should return true', function() {
+        info = new Info(dir + '/simple');
+        return expect(info.isNpmDependency()).to.be["true"];
       });
     });
   });
