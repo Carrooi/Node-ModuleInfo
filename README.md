@@ -44,7 +44,7 @@ var info = Info.self(module);
 ## Info object
 
 * `getPackagePath()`: returns path to `package.json` file
-* `getPackageData()`: returns parsed JSON data from `package.json` file
+* `getData()`: returns parsed JSON data from `package.json` file
 * `getName()`: returns name of module
 * `getPath()`: returns resolved path to module
 * `getVersion()`: returns version of module
@@ -61,6 +61,8 @@ $ npm test
 
 * 1.1.1
 	+ If main section in package.json is not defined and file `./index.js` exists, it will be returned from `getMainFile` method
+	+Method `getPackageData` renamed to `getData`
+	+ Method `getPackageData` is now deprecated
 
 * 1.1.0
 	+ Added getPath method
