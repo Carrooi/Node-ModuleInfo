@@ -67,12 +67,21 @@ describe 'Info', ->
 			info = new Info(dir + '/simple')
 			expect( -> info.getModuleName(dir + '/simple') ).to.throw(Error)
 
-		it 'should get name of module itself', ->
+		it 'should get name of simple module itself', ->
 			info = new Info(dir + '/simple')
 			expect(info.getModuleName('index.js')).to.be.equal('simple')
 
+		it 'should get name of advanced module itself', ->
 			info = new Info(dir + '/advanced')
 			expect(info.getModuleName('dir/lib/index.js')).to.be.equal('advanced')
+
+		it 'should get name of main file relatively', ->
+			info = new Info(dir + '/simple')
+			expect(info.getModuleName('index.js', true)).to.be.equal('index.js')
+
+		it 'should get name of main file of advanced module relatively', ->
+			info = new Info(dir + '/advanced')
+			expect(info.getModuleName('dir/lib/index.js', true)).to.be.equal('dir/lib/index.js')
 
 		it 'should get name of file in module for require method', ->
 			info = new Info(dir + '/advanced')

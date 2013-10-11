@@ -49,7 +49,7 @@ var info = Info.self(module);
 * `getPath()`: returns resolved path to module
 * `getVersion()`: returns version of module
 * `getMainFile()`: returns resolved full path to main file (even it is not defined in `package.json`)
-* `getModuleName(string filePath)`: returns name for file in module used in `require` method
+* `getModuleName(string filePath, bool relative = false)`: returns name for file in module used in `require` method
 * `isNpmDependency()`: return true if module is dependency for another module
 * `isFileInModule(string filePath)`: checks if file is in module directory (not in any dependent sub-module)
 
@@ -60,6 +60,9 @@ $ npm test
 ```
 
 ## Changelog
+
+* 1.2.1
+	+ `getModuleName` can return name relatively to base module directory
 
 * 1.2.0
 	+ Added method `isNpmDependency`

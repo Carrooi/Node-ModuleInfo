@@ -89,7 +89,7 @@ class Info
 		return @dir
 
 
-	getModuleName: (file) ->
+	getModuleName: (file, relative = false) ->
 		file = path.resolve(@dir, file)
 
 		if !@isFileInModule(file)
@@ -101,10 +101,11 @@ class Info
 		if !fs.statSync(file).isFile()
 			throw new Error 'Path ' + file + ' is not file.'
 
-		if file == @getMainFile()
+		if file == @getMainFile() && !relative
 			return @getName()
 
-		return @getName() + '/' + path.relative(@dir, file)
+		_path = path.relative(@dir, file)
+		return if relative then _path else @getName() + '/' + _path
 
 
 	getVersion: ->
