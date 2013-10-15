@@ -61,6 +61,9 @@ $ npm test
 
 ## Changelog
 
+* 1.2.2
+	+ Bug with giving name of some files
+
 * 1.2.1
 	+ `getModuleName` can return name relatively to base module directory
 
@@ -73,7 +76,7 @@ $ npm test
 * 1.1.2
 	+ Just typo in readme
 
-* 1.1.1
+* 1.1.11
 	+ If main section in package.json is not defined and file `./index.js` exists, it will be returned from `getMainFile` method
 	+ Method `getPackageData` renamed to `getData`
 	+ Method `getPackageData` is now deprecated

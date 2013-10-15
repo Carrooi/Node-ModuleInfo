@@ -122,7 +122,7 @@ class Info
 
 	isNpmDependency: ->
 		test = escapeRegexp('/node_modules/' + @getName())
-		return @dir.match(new RegExp(test + '$')) != null
+		return @dir.match(new RegExp(test)) != null
 
 
 	isFileInModule: (file) ->
