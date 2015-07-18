@@ -2,6 +2,14 @@
 
 Find package.json files in module and load information from it.
 
+## Help
+
+Unfortunately I don't have any more time to maintain this repository :-( 
+
+Don't you want to save me and this project by taking over it?
+
+![sad cat](https://raw.githubusercontent.com/sakren/sakren.github.io/master/images/sad-kitten.jpg)
+
 ## Installation
 
 ```
@@ -61,6 +69,10 @@ $ npm test
 
 ## Changelog
 
+* 1.2.3
+	+ Move under Carrooi organization
+	+ Abandon package
+
 * 1.2.2
 	+ Bug with giving name of some files
 
@@ -87,3 +99,4 @@ $ npm test
 
 * 1.0.0
 	+ First version
+
