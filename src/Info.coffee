@@ -36,17 +36,12 @@ class Info
 
 
 	@fromName: (pmodule, name) ->
-		directories = Finder.in(path.dirname(pmodule.filename)).lookUp().findDirectories('node_modules')
-		m = null
-		for dir in directories
-			if fs.existsSync(dir + '/' + name) && fs.statSync(dir + '/' + name).isDirectory()
-				m = dir + '/' + name
-				break
+		for dir in pmodule.paths
+			m = dir + '/' + name
+			if fs.existsSync(m) && fs.statSync(m).isDirectory()
+				return new Info(m)
 
-		if m == null
-			throw new Error 'Module ' + name + ' was not found.'
-
-		return new Info(m)
+		throw new Error 'Module ' + name + ' was not found.'
 
 
 	@self: (pmodule) ->
